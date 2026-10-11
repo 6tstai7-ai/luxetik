@@ -140,7 +140,7 @@ track.addEventListener(
 
 let drag = null;
 track.addEventListener("pointerdown", (event) => {
-  if (event.button !== 0) return;
+  if (event.button !== 0 || event.pointerType === "touch") return;
   if (event.target.closest("a, button, input, textarea, label, select")) return;
   drag = { x: event.clientX, y: event.clientY, left: track.scrollLeft, id: event.pointerId, deck: Boolean(event.target.closest(".deck")) };
   track.classList.add("is-dragging");
@@ -168,6 +168,22 @@ function endDrag(event) {
 }
 track.addEventListener("pointerup", endDrag);
 track.addEventListener("pointercancel", endDrag);
+
+if (deck) {
+  let touchStart = null;
+  deck.addEventListener("touchstart", (event) => {
+    const point = event.changedTouches[0];
+    touchStart = { x: point.clientX, y: point.clientY };
+  }, { passive: true });
+  deck.addEventListener("touchend", (event) => {
+    if (!touchStart) return;
+    const point = event.changedTouches[0];
+    const dx = point.clientX - touchStart.x;
+    const dy = point.clientY - touchStart.y;
+    touchStart = null;
+    if (Math.abs(dy) > 48 && Math.abs(dy) > Math.abs(dx)) playDeck(dy > 0 ? 1 : -1);
+  }, { passive: true });
+}
 
 prev.addEventListener("click", () => go(indexNow() - 1));
 next.addEventListener("click", () => go(indexNow() + 1));
