@@ -99,7 +99,10 @@ function sync() {
   slides.forEach((item, n) => item.classList.toggle("is-current", n === i));
   if (!slide.classList.contains("deck")) resetDeck();
   document.body.classList.toggle("on-dark", slide.dataset.theme === "dark");
-  current.textContent = `${slide.dataset.collection} ↑`;
+  const name = document.documentElement.lang === "en"
+    ? slide.dataset.collectionEn || slide.dataset.collection
+    : slide.dataset.collection;
+  current.textContent = `${name} ↑`;
   const atStart = i === 0;
   prev.hidden = atStart;
   hint.hidden = !atStart;
@@ -197,4 +200,5 @@ document.querySelectorAll("[data-go]").forEach((node) => {
   });
 });
 
+document.addEventListener("luxetik:lang", sync);
 sync();

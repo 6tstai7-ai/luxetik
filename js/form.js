@@ -3,7 +3,7 @@ const shell = document.querySelector("#form-shell");
 const steps = [...form.querySelectorAll(".step")];
 const error = document.querySelector("#form-error");
 const back = document.querySelector("#back");
-const next = document.querySelector("#next");
+const advance = document.querySelector("#next");
 const progress = document.querySelector("#progress");
 const meterBar = document.querySelector("#meter-bar");
 const result = document.querySelector("#result");
@@ -12,7 +12,7 @@ const ease = "cubic-bezier(0.23, 1, 0.32, 1)";
 
 let index = 0;
 
-function reduced() {
+function motionOff() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
@@ -24,7 +24,8 @@ function show(nextIndex, focusField = true) {
     step.hidden = !active;
   });
   back.hidden = index === 0;
-  next.textContent = index === steps.length - 1 ? "Envoyer la demande" : "Continuer";
+  const t = window.luxetikT;
+  advance.textContent = index === steps.length - 1 ? t("send") : t("continue");
   progress.textContent = `${index + 1} / ${steps.length}`;
   if (meterBar) meterBar.style.width = `${((index + 1) / steps.length) * 100}%`;
   error.textContent = "";
@@ -39,22 +40,23 @@ function messageFor(step) {
       if (names.has(field.name)) continue;
       names.add(field.name);
       const picked = step.querySelector(`input[name="${CSS.escape(field.name)}"]:checked`);
-      if (!picked) return "Choisissez une réponse.";
+      const t = window.luxetikT;
+      if (!picked) return t("err-choice");
       if (picked.value === "autre") {
         const extra = step.querySelector(`[name="${CSS.escape(field.name)}-preciser"]`);
-        if (extra && !extra.value.trim()) return "Précisez votre réponse.";
+        if (extra && !extra.value.trim()) return t("err-specify");
       }
       continue;
     }
     if (field.dataset.optional === "true") continue;
     if (field.closest("[hidden]")) continue;
-    if (!field.value.trim()) return "Complétez ce champ pour continuer.";
+    if (!field.value.trim()) return window.luxetikT("err-required");
   }
   return "";
 }
 
 function run(update) {
-  if (reduced()) {
+  if (motionOff()) {
     update();
     return;
   }
@@ -106,6 +108,12 @@ revise.addEventListener("click", () => {
   form.hidden = false;
   show(0);
   document.querySelector("#demande")?.scrollIntoView({ block: "start" });
+});
+
+document.addEventListener("luxetik:lang", () => {
+  const t = window.luxetikT;
+  advance.textContent = index === steps.length - 1 ? t("send") : t("continue");
+  if (error.textContent) error.textContent = messageFor(steps[index]);
 });
 
 show(0, false);

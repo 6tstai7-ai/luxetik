@@ -81,6 +81,14 @@ button {
 .top-links a { text-decoration: none; font-weight: 400; }
 #menu { font-weight: 700; }
 
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.lang button { font-weight: 400; letter-spacing: 0.04em; }
+.lang button[aria-pressed="true"] { font-weight: 700; }
+
 .rail button {
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -439,6 +447,8 @@ input, textarea {
 
 @media (max-width: 800px) {
   .top, .rail { padding: 0.9rem 1rem; }
+  .top-links { gap: 0.35rem; }
+  .brand { font-size: 1.15rem; }
   .rail-word { display: none; }
   .slide,
   .slide.deck,

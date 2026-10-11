@@ -15,22 +15,28 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/site.css?v=13" />
+    <link rel="stylesheet" href="css/site.css?v=14" />
   </head>
   <body>
-    <a class="skip" href="#track">Aller au contenu</a>
+    <a class="skip" href="#track" data-i18n="skip">Aller au contenu</a>
 
     <header class="top">
       <a class="brand" href="#accueil" data-go="0">Luxétik</a>
       <p class="top-links">
-        <a href="#ecrire" data-go="9">Contact</a>
+        <span class="lang" role="group" data-i18n-aria="lang" aria-label="Langue">
+          <button type="button" data-set-lang="fr" aria-pressed="true">FR</button>
+          <span aria-hidden="true">|</span>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </span>
         <span aria-hidden="true">|</span>
-        <button type="button" id="menu">Menu</button>
+        <a href="#ecrire" data-go="9" data-i18n="contact">Contact</a>
+        <span aria-hidden="true">|</span>
+        <button type="button" id="menu" data-i18n="menu">Menu</button>
       </p>
     </header>
 
     <main id="track" class="track" tabindex="0">
-      <section class="slide home" id="accueil" data-theme="light" data-collection="Accueil">
+      <section class="slide home" id="accueil" data-theme="light" data-collection="Accueil" data-collection-en="Home">
         <div class="home-mark">
           <svg class="mark" viewBox="0 0 841 794" aria-hidden="true">
             <defs>
@@ -57,210 +63,211 @@
             <image href="assets/mark-foot.png?v=2" width="841" height="794" mask="url(#m-foot)" />
           </svg>
         </div>
-        <nav class="index" aria-label="Collections">
-          <button type="button" data-go="1">Expertise</button>
-          <button type="button" data-go="3">Approche</button>
-          <button type="button" data-go="5">Sélection</button>
-          <button type="button" data-go="7">À propos</button>
-          <button type="button" data-go="9">Nous écrire</button>
+        <nav class="index" data-i18n-aria="sections" aria-label="Collections">
+          <button type="button" data-go="1" data-i18n="navExpertise">Expertise</button>
+          <button type="button" data-go="3" data-i18n="navApproach">Approche</button>
+          <button type="button" data-go="5" data-i18n="navSelection">Sélection</button>
+          <button type="button" data-go="7" data-i18n="navAbout">À propos</button>
+          <button type="button" data-go="9" data-i18n="navWrite">Nous écrire</button>
         </nav>
       </section>
 
-      <section class="slide cover" data-theme="dark" data-collection="Expertise">
-        <h1>Expertise</h1>
+      <section class="slide cover" data-theme="dark" data-collection="Expertise" data-collection-en="Expertise">
+        <h1 data-i18n="navExpertise">Expertise</h1>
       </section>
 
-      <section class="slide prose" data-theme="light" data-collection="Expertise">
+      <section class="slide prose" data-theme="light" data-collection="Expertise" data-collection-en="Expertise">
         <div class="copy">
-          <p class="lead">Luxétik transforme les histoires, les projets et les événements en expériences visuelles fortes.</p>
-          <p>Elles captent l’attention, créent de la visibilité et connectent les bonnes personnes.</p>
-          <p>Artistes, entrepreneurs, organisations et projets culturels qui veulent transformer leur vision en une image forte.</p>
-          <p class="aside">Pas de marketing de masse.</p>
+          <p class="lead" data-i18n="exp1">Luxétik transforme les histoires, les projets et les événements en expériences visuelles fortes.</p>
+          <p data-i18n="exp2">Elles captent l’attention, créent de la visibilité et connectent les bonnes personnes.</p>
+          <p data-i18n="exp3">Artistes, entrepreneurs, organisations et projets culturels qui veulent transformer leur vision en une image forte.</p>
+          <p class="aside" data-i18n="exp4">Pas de marketing de masse.</p>
         </div>
       </section>
 
-      <section class="slide cover" data-theme="dark" data-collection="Approche">
-        <h2>Approche</h2>
+      <section class="slide cover" data-theme="dark" data-collection="Approche" data-collection-en="Approach">
+        <h2 data-i18n="navApproach">Approche</h2>
       </section>
 
-      <section class="slide prose" data-theme="light" data-collection="Approche">
+      <section class="slide prose" data-theme="light" data-collection="Approche" data-collection-en="Approach">
         <div class="copy">
-          <p class="lead">Une bonne idée ne doit pas juste exister. On donne les outils pour la réaliser.</p>
-          <p>Après, tu n’as plus seulement un projet. Tu as une image claire et une présence réelle, qui t’ouvre des portes.</p>
+          <p class="lead" data-i18n="app1">Une bonne idée ne doit pas juste exister. On donne les outils pour la réaliser.</p>
+          <p data-i18n="app2">Après, tu n’as plus seulement un projet. Tu as une image claire et une présence réelle, qui t’ouvre des portes.</p>
         </div>
       </section>
 
-      <section class="slide cover" data-theme="dark" data-collection="Sélection">
-        <h2>Sélection</h2>
+      <section class="slide cover" data-theme="dark" data-collection="Sélection" data-collection-en="Selection">
+        <h2 data-i18n="navSelection">Sélection</h2>
       </section>
 
-      <section class="slide deck" id="selection" data-theme="light" data-collection="Sélection">
+      <section class="slide deck" id="selection" data-theme="light" data-collection="Sélection" data-collection-en="Selection">
         <div class="deck-stack">
           <article class="card">
-            <div class="frame glow" role="img" aria-label="Image à déposer, expérience 1"></div>
+            <div class="frame glow" role="img" data-i18n-aria="card1" aria-label="Image à déposer, expérience 1"></div>
             <div class="copy">
               <p class="role">1</p>
-              <p class="lead">Nom à venir</p>
-              <p>Preuve à déposer</p>
+              <p class="lead" data-i18n="nameSoon">Nom à venir</p>
+              <p data-i18n="proofSoon">Preuve à déposer</p>
             </div>
           </article>
           <article class="card">
-            <div class="frame glow" role="img" aria-label="Image à déposer, expérience 2"></div>
+            <div class="frame glow" role="img" data-i18n-aria="card2" aria-label="Image à déposer, expérience 2"></div>
             <div class="copy">
               <p class="role">2</p>
-              <p class="lead">Nom à venir</p>
-              <p>Preuve à déposer</p>
+              <p class="lead" data-i18n="nameSoon">Nom à venir</p>
+              <p data-i18n="proofSoon">Preuve à déposer</p>
             </div>
           </article>
           <article class="card">
-            <div class="frame glow" role="img" aria-label="Image à déposer, expérience 3"></div>
+            <div class="frame glow" role="img" data-i18n-aria="card3" aria-label="Image à déposer, expérience 3"></div>
             <div class="copy">
               <p class="role">3</p>
-              <p class="lead">Nom à venir</p>
-              <p>Preuve à déposer</p>
+              <p class="lead" data-i18n="nameSoon">Nom à venir</p>
+              <p data-i18n="proofSoon">Preuve à déposer</p>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="slide cover" data-theme="dark" data-collection="À propos">
-        <h2>À propos</h2>
+      <section class="slide cover" data-theme="dark" data-collection="À propos" data-collection-en="About">
+        <h2 data-i18n="navAbout">À propos</h2>
       </section>
 
-      <section class="slide story slide-scroll" data-theme="light" data-collection="À propos">
+      <section class="slide story slide-scroll" data-theme="light" data-collection="À propos" data-collection-en="About">
         <figure class="portrait">
-          <div class="frame frame-portrait" role="img" aria-label="Portrait de Carl Constant, à déposer"></div>
-          <figcaption>Portrait à déposer</figcaption>
+          <div class="frame frame-portrait" role="img" data-i18n-aria="portrait" aria-label="Portrait de Carl Constant, à déposer"></div>
+          <figcaption data-i18n="portraitCap">Portrait à déposer</figcaption>
         </figure>
         <div class="copy">
-          <p class="role">Fondateur et directeur créatif</p>
-          <p>Le parcours de Carl Constant ne suit pas une ligne droite.</p>
-          <p>Il débute dans les Forces armées, où il développe discipline, rigueur et capacité d’adaptation. Il entre ensuite dans l’univers de l’image comme mannequin, avant de passer de l’autre côté en collaborant avec un média et en explorant la création, la culture et l’événementiel.</p>
-          <p>Son parcours l’amène également vers le corps et la performance : plusieurs années comme entraîneur privé, puis une formation en massothérapie et en kinésithérapie.</p>
-          <p>Des expériences très différentes qui ont façonné une même manière de voir : observer, comprendre, connecter et créer.</p>
-          <p>Aujourd’hui, avec Luxétik, Carl rassemble ces différents univers pour accompagner artistes, entrepreneurs et organisations dans leur image, leur histoire et les expériences qu’ils souhaitent créer.</p>
-          <p class="aside">Un parcours multidisciplinaire. Un regard singulier. Une vision mise en mouvement.</p>
+          <p class="role" data-i18n="role">Fondateur et directeur créatif</p>
+          <p data-i18n="bio1">Le parcours de Carl Constant ne suit pas une ligne droite.</p>
+          <p data-i18n="bio2">Il débute dans les Forces armées, où il développe discipline, rigueur et capacité d’adaptation. Il entre ensuite dans l’univers de l’image comme mannequin, avant de passer de l’autre côté en collaborant avec un média et en explorant la création, la culture et l’événementiel.</p>
+          <p data-i18n="bio3">Son parcours l’amène également vers le corps et la performance : plusieurs années comme entraîneur privé, puis une formation en massothérapie et en kinésithérapie.</p>
+          <p data-i18n="bio4">Des expériences très différentes qui ont façonné une même manière de voir : observer, comprendre, connecter et créer.</p>
+          <p data-i18n="bio5">Aujourd’hui, avec Luxétik, Carl rassemble ces différents univers pour accompagner artistes, entrepreneurs et organisations dans leur image, leur histoire et les expériences qu’ils souhaitent créer.</p>
+          <p class="aside" data-i18n="bio6">Un parcours multidisciplinaire. Un regard singulier. Une vision mise en mouvement.</p>
         </div>
       </section>
 
-      <section class="slide demande slide-scroll" id="ecrire" data-theme="dark" data-collection="Nous écrire">
+      <section class="slide demande slide-scroll" id="ecrire" data-theme="dark" data-collection="Nous écrire" data-collection-en="Write to us">
         <div class="demande-inner">
-          <h2 id="demande-title">Dis à Carl où tu en es.</h2>
-          <p class="demande-lead">Il lit chaque demande. L’appel, 30 à 40 minutes, part seulement si le projet avance.</p>
+          <h2 id="demande-title" data-i18n="askTitle">Dis à Carl où tu en es.</h2>
+          <p class="demande-lead" data-i18n="askLead">Il lit chaque demande. L’appel, 30 à 40 minutes, part seulement si le projet avance.</p>
           <form id="qualification" novalidate>
             <p class="progress" id="progress" aria-live="polite">1 / 12</p>
             <div class="meter" aria-hidden="true"><span id="meter-bar"></span></div>
             <div id="form-shell">
               <fieldset class="step is-active">
-                <legend>Parlez-nous de vous</legend>
-                <p class="hint">Nom, entreprise ou projet, site web ou Instagram.</p>
-                <label>Nom <input name="nom" type="text" autocomplete="name" required /></label>
-                <label>Entreprise ou projet <input name="organisation" type="text" autocomplete="organization" required /></label>
-                <label>Site web ou Instagram <input name="lien" type="text" inputmode="url" autocomplete="url" required /></label>
+                <legend data-i18n="f1">Parlez-nous de vous</legend>
+                <p class="hint" data-i18n="f1hint">Nom, entreprise ou projet, site web ou Instagram.</p>
+                <label><span data-i18n="name">Nom</span> <input name="nom" type="text" autocomplete="name" required /></label>
+                <label><span data-i18n="org">Entreprise ou projet</span> <input name="organisation" type="text" autocomplete="organization" required /></label>
+                <label><span data-i18n="link">Site web ou Instagram</span> <input name="lien" type="text" inputmode="url" autocomplete="url" required /></label>
               </fieldset>
               <fieldset class="step">
-                <legend>Quel type de projet souhaitez-vous réaliser avec Luxétik&nbsp;?</legend>
+                <legend data-i18n="f2">Quel type de projet souhaitez-vous réaliser avec Luxétik ?</legend>
                 <div class="choices">
-                  <label class="choice"><input type="radio" name="type" value="Contenu photo/vidéo" required /> Contenu photo/vidéo</label>
-                  <label class="choice"><input type="radio" name="type" value="Image/branding" /> Image/branding</label>
-                  <label class="choice"><input type="radio" name="type" value="Relations publiques/visibilité" /> Relations publiques/visibilité</label>
-                  <label class="choice"><input type="radio" name="type" value="Événement" /> Événement</label>
-                  <label class="choice"><input type="radio" name="type" value="Campagne" /> Campagne</label>
-                  <label class="choice"><input type="radio" name="type" value="Partenariats/commandites" /> Partenariats/commandites</label>
-                  <label class="choice"><input type="radio" name="type" value="autre" /> Autre</label>
+                  <label class="choice"><input type="radio" name="type" value="Contenu photo/vidéo" required /> <span data-i18n="typePhoto">Contenu photo/vidéo</span></label>
+                  <label class="choice"><input type="radio" name="type" value="Image/branding" /> <span data-i18n="typeBrand">Image/branding</span></label>
+                  <label class="choice"><input type="radio" name="type" value="Relations publiques/visibilité" /> <span data-i18n="typePr">Relations publiques/visibilité</span></label>
+                  <label class="choice"><input type="radio" name="type" value="Événement" /> <span data-i18n="typeEvent">Événement</span></label>
+                  <label class="choice"><input type="radio" name="type" value="Campagne" /> <span data-i18n="typeCampaign">Campagne</span></label>
+                  <label class="choice"><input type="radio" name="type" value="Partenariats/commandites" /> <span data-i18n="typePartner">Partenariats/commandites</span></label>
+                  <label class="choice"><input type="radio" name="type" value="autre" /> <span data-i18n="other">Autre</span></label>
                 </div>
-                <label class="preciser" hidden>Précisez <input name="type-preciser" type="text" /></label>
+                <label class="preciser" hidden><span data-i18n="specify">Précisez</span> <input name="type-preciser" type="text" /></label>
               </fieldset>
               <fieldset class="step">
-                <legend>Qu’est-ce que vous cherchez réellement à accomplir&nbsp;?</legend>
+                <legend data-i18n="f3">Qu’est-ce que vous cherchez réellement à accomplir ?</legend>
                 <div class="choices">
-                  <label class="choice"><input type="radio" name="but" value="Plus de visibilité" required /> Plus de visibilité</label>
-                  <label class="choice"><input type="radio" name="but" value="Améliorer votre image" /> Améliorer votre image</label>
-                  <label class="choice"><input type="radio" name="but" value="Lancer un projet" /> Lancer un projet</label>
-                  <label class="choice"><input type="radio" name="but" value="Attirer des clients" /> Attirer des clients</label>
-                  <label class="choice"><input type="radio" name="but" value="Remplir un événement" /> Remplir un événement</label>
-                  <label class="choice"><input type="radio" name="but" value="Développer des partenariats" /> Développer des partenariats</label>
-                  <label class="choice"><input type="radio" name="but" value="autre" /> Autre</label>
+                  <label class="choice"><input type="radio" name="but" value="Plus de visibilité" required /> <span data-i18n="goalSee">Plus de visibilité</span></label>
+                  <label class="choice"><input type="radio" name="but" value="Améliorer votre image" /> <span data-i18n="goalImage">Améliorer votre image</span></label>
+                  <label class="choice"><input type="radio" name="but" value="Lancer un projet" /> <span data-i18n="goalLaunch">Lancer un projet</span></label>
+                  <label class="choice"><input type="radio" name="but" value="Attirer des clients" /> <span data-i18n="goalClients">Attirer des clients</span></label>
+                  <label class="choice"><input type="radio" name="but" value="Remplir un événement" /> <span data-i18n="goalFill">Remplir un événement</span></label>
+                  <label class="choice"><input type="radio" name="but" value="Développer des partenariats" /> <span data-i18n="goalPartners">Développer des partenariats</span></label>
+                  <label class="choice"><input type="radio" name="but" value="autre" /> <span data-i18n="other">Autre</span></label>
                 </div>
-                <label class="preciser" hidden>Précisez <input name="but-preciser" type="text" /></label>
+                <label class="preciser" hidden><span data-i18n="specify">Précisez</span> <input name="but-preciser" type="text" /></label>
               </fieldset>
               <fieldset class="step">
-                <legend>Où en êtes-vous actuellement&nbsp;?</legend>
-                <p class="hint">Quelques phrases sur la situation, ce qui a déjà été essayé, et ce qui ne fonctionne pas.</p>
-                <label class="stack"><span class="sr">Situation actuelle</span><textarea name="situation" rows="4" required></textarea></label>
+                <legend data-i18n="f4">Où en êtes-vous actuellement ?</legend>
+                <p class="hint" data-i18n="f4hint">Quelques phrases sur la situation, ce qui a déjà été essayé, et ce qui ne fonctionne pas.</p>
+                <label class="stack"><span class="sr" data-i18n="situation">Situation actuelle</span><textarea name="situation" rows="4" required></textarea></label>
               </fieldset>
               <fieldset class="step">
-                <legend>À quoi ressemblerait une réussite pour vous&nbsp;?</legend>
-                <label class="stack"><span class="sr">Réussite</span><textarea name="reussite" rows="4" required></textarea></label>
+                <legend data-i18n="f5">À quoi ressemblerait une réussite pour vous ?</legend>
+                <label class="stack"><span class="sr" data-i18n="success">Réussite</span><textarea name="reussite" rows="4" required></textarea></label>
               </fieldset>
               <fieldset class="step">
-                <legend>Pourquoi souhaitez-vous travailler sur ce projet maintenant&nbsp;?</legend>
-                <label class="stack"><span class="sr">Pourquoi maintenant</span><textarea name="maintenant" rows="4" required></textarea></label>
+                <legend data-i18n="f6">Pourquoi souhaitez-vous travailler sur ce projet maintenant ?</legend>
+                <label class="stack"><span class="sr" data-i18n="whyNow">Pourquoi maintenant</span><textarea name="maintenant" rows="4" required></textarea></label>
               </fieldset>
               <fieldset class="step">
-                <legend>Avez-vous une date, un lancement ou une échéance à respecter&nbsp;?</legend>
-                <label>Date ou échéance <input name="echeance" type="text" required /></label>
+                <legend data-i18n="f7">Avez-vous une date, un lancement ou une échéance à respecter ?</legend>
+                <label><span data-i18n="deadline">Date ou échéance</span> <input name="echeance" type="text" required /></label>
               </fieldset>
               <fieldset class="step">
-                <legend>Quel niveau d’accompagnement recherchez-vous&nbsp;?</legend>
+                <legend data-i18n="f8">Quel niveau d’accompagnement recherchez-vous ?</legend>
                 <div class="choices">
-                  <label class="choice"><input type="radio" name="niveau" value="Exécution seulement" required /> Exécution seulement</label>
-                  <label class="choice"><input type="radio" name="niveau" value="Direction créative + exécution" /> Direction créative + exécution</label>
-                  <label class="choice"><input type="radio" name="niveau" value="Stratégie + création + déploiement" /> Stratégie + création + déploiement</label>
-                  <label class="choice"><input type="radio" name="niveau" value="Je ne sais pas encore" /> Je ne sais pas encore</label>
-                </div>
-              </fieldset>
-              <fieldset class="step">
-                <legend>Quel budget avez-vous prévu pour ce projet&nbsp;?</legend>
-                <div class="choices">
-                  <label class="choice"><input type="radio" name="budget" value="Moins de 1 000 $" required /> Moins de 1&nbsp;000&nbsp;$</label>
-                  <label class="choice"><input type="radio" name="budget" value="1 000–2 500 $" /> 1&nbsp;000–2&nbsp;500&nbsp;$</label>
-                  <label class="choice"><input type="radio" name="budget" value="2 500–5 000 $" /> 2&nbsp;500–5&nbsp;000&nbsp;$</label>
-                  <label class="choice"><input type="radio" name="budget" value="5 000–10 000 $" /> 5&nbsp;000–10&nbsp;000&nbsp;$</label>
-                  <label class="choice"><input type="radio" name="budget" value="10 000 $+" /> 10&nbsp;000&nbsp;$+</label>
-                  <label class="choice"><input type="radio" name="budget" value="À déterminer" /> À déterminer</label>
+                  <label class="choice"><input type="radio" name="niveau" value="Exécution seulement" required /> <span data-i18n="lvlDo">Exécution seulement</span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="Direction créative + exécution" /> <span data-i18n="lvlDir">Direction créative + exécution</span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="Stratégie + création + déploiement" /> <span data-i18n="lvlAll">Stratégie + création + déploiement</span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="Je ne sais pas encore" /> <span data-i18n="lvlUnknown">Je ne sais pas encore</span></label>
                 </div>
               </fieldset>
               <fieldset class="step">
-                <legend>Qui prend la décision finale concernant ce projet&nbsp;?</legend>
+                <legend data-i18n="f9">Quel budget avez-vous prévu pour ce projet ?</legend>
                 <div class="choices">
-                  <label class="choice"><input type="radio" name="decision" value="Moi" required /> Moi</label>
-                  <label class="choice"><input type="radio" name="decision" value="Moi avec un partenaire/équipe" /> Moi avec un partenaire/équipe</label>
-                  <label class="choice"><input type="radio" name="decision" value="Une autre personne" /> Une autre personne</label>
+                  <label class="choice"><input type="radio" name="budget" value="Moins de 1 000 $" required /> <span data-i18n="b1">Moins de 1&nbsp;000&nbsp;$</span></label>
+                  <label class="choice"><input type="radio" name="budget" value="1 000–2 500 $" /> <span data-i18n="b2">1&nbsp;000–2&nbsp;500&nbsp;$</span></label>
+                  <label class="choice"><input type="radio" name="budget" value="2 500–5 000 $" /> <span data-i18n="b3">2&nbsp;500–5&nbsp;000&nbsp;$</span></label>
+                  <label class="choice"><input type="radio" name="budget" value="5 000–10 000 $" /> <span data-i18n="b4">5&nbsp;000–10&nbsp;000&nbsp;$</span></label>
+                  <label class="choice"><input type="radio" name="budget" value="10 000 $+" /> <span data-i18n="b5">10&nbsp;000&nbsp;$+</span></label>
+                  <label class="choice"><input type="radio" name="budget" value="À déterminer" /> <span data-i18n="b6">À déterminer</span></label>
                 </div>
               </fieldset>
               <fieldset class="step">
-                <legend>Pourquoi Luxétik&nbsp;?</legend>
-                <label class="stack"><span class="sr">Pourquoi Luxétik</span><textarea name="pourquoi" rows="4" required></textarea></label>
+                <legend data-i18n="f10">Qui prend la décision finale concernant ce projet ?</legend>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="decision" value="Moi" required /> <span data-i18n="decMe">Moi</span></label>
+                  <label class="choice"><input type="radio" name="decision" value="Moi avec un partenaire/équipe" /> <span data-i18n="decUs">Moi avec un partenaire/équipe</span></label>
+                  <label class="choice"><input type="radio" name="decision" value="Une autre personne" /> <span data-i18n="decOther">Une autre personne</span></label>
+                </div>
               </fieldset>
               <fieldset class="step">
-                <legend>Y a-t-il autre chose que nous devrions savoir avant de vous rencontrer&nbsp;?</legend>
-                <label class="stack"><span class="sr">Autre chose</span><textarea name="autre" rows="3" data-optional="true"></textarea></label>
+                <legend data-i18n="f11">Pourquoi Luxétik ?</legend>
+                <label class="stack"><span class="sr" data-i18n="whyLux">Pourquoi Luxétik</span><textarea name="pourquoi" rows="4" required></textarea></label>
+              </fieldset>
+              <fieldset class="step">
+                <legend data-i18n="f12">Y a-t-il autre chose que nous devrions savoir avant de vous rencontrer ?</legend>
+                <label class="stack"><span class="sr" data-i18n="anything">Autre chose</span><textarea name="autre" rows="3" data-optional="true"></textarea></label>
               </fieldset>
             </div>
             <p class="form-error" id="form-error" role="alert"></p>
             <div class="form-nav">
-              <button class="btn btn-quiet" type="button" id="back" hidden>Retour</button>
+              <button class="btn btn-quiet" type="button" id="back" data-i18n="back" hidden>Retour</button>
               <button class="btn btn-paper" type="submit" id="next">Continuer</button>
             </div>
           </form>
           <div class="result" id="result" hidden>
-            <h3 tabindex="-1">Demande reçue.</h3>
-            <p>Carl la lit. Le lien d’appel part s’il avance. Le premier échange dure 30 à 40 minutes.</p>
-            <button class="btn btn-quiet" type="button" id="revise">Revoir les réponses</button>
+            <h3 tabindex="-1" data-i18n="received">Demande reçue.</h3>
+            <p data-i18n="receivedLead">Carl la lit. Le lien d’appel part s’il avance. Le premier échange dure 30 à 40 minutes.</p>
+            <button class="btn btn-quiet" type="button" id="revise" data-i18n="revise">Revoir les réponses</button>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="rail">
-      <button type="button" id="hint">Défilez ou faites glisser pour naviguer</button>
-      <button type="button" id="prev" hidden>← <span class="rail-word">Collection précédente</span></button>
+      <button type="button" id="hint" data-i18n="hint">Défilez ou faites glisser pour naviguer</button>
+      <button type="button" id="prev" hidden>← <span class="rail-word" data-i18n="prev">Collection précédente</span></button>
       <button type="button" id="current">Accueil ↑</button>
-      <button type="button" id="next-col"><span class="rail-word">Collection suivante</span> →</button>
+      <button type="button" id="next-col"><span class="rail-word" data-i18n="next">Collection suivante</span> →</button>
     </footer>
 
-    <script src="js/nav.js?v=11"></script>
-    <script src="js/form.js?v=9"></script>
+    <script src="js/i18n.js?v=1"></script>
+    <script src="js/nav.js?v=12"></script>
+    <script src="js/form.js?v=13"></script>
   </body>
 </html>
