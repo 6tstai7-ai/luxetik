@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/site.css?v=12" />
   </head>
   <body>
     <a class="skip" href="#track">Aller au contenu</a>
@@ -23,7 +23,7 @@
     <header class="top">
       <a class="brand" href="#accueil" data-go="0">Luxétik</a>
       <p class="top-links">
-        <a href="#ecrire" data-go="11">Contact</a>
+        <a href="#ecrire" data-go="9">Contact</a>
         <span aria-hidden="true">|</span>
         <button type="button" id="menu">Menu</button>
       </p>
@@ -32,14 +32,37 @@
     <main id="track" class="track" tabindex="0">
       <section class="slide home" id="accueil" data-theme="light" data-collection="Accueil">
         <div class="home-mark">
-          <img src="assets/mark.png" alt="" />
+          <svg class="mark" viewBox="0 0 841 794" aria-hidden="true">
+            <defs>
+              <mask id="m-bar" maskUnits="userSpaceOnUse" x="0" y="0" width="841" height="794">
+                <rect width="841" height="794" fill="black" />
+                <line class="draw d1" pathLength="1" x1="248" y1="41" x2="632" y2="41" stroke="white" stroke-width="76" stroke-linecap="butt" />
+              </mask>
+              <mask id="m-a" maskUnits="userSpaceOnUse" x="0" y="0" width="841" height="794">
+                <rect width="841" height="794" fill="black" />
+                <line class="draw d2" pathLength="1" x1="74" y1="27" x2="813" y2="766" stroke="white" stroke-width="80" stroke-linecap="round" />
+              </mask>
+              <mask id="m-b" maskUnits="userSpaceOnUse" x="0" y="0" width="841" height="794">
+                <rect width="841" height="794" fill="black" />
+                <line class="draw d3" pathLength="1" x1="813" y1="27" x2="108" y2="732" stroke="white" stroke-width="80" stroke-linecap="round" />
+              </mask>
+              <mask id="m-foot" maskUnits="userSpaceOnUse" x="0" y="0" width="841" height="794">
+                <rect width="841" height="794" fill="black" />
+                <line class="draw d4" pathLength="1" x1="0" y1="752" x2="620" y2="752" stroke="white" stroke-width="78" stroke-linecap="round" />
+              </mask>
+            </defs>
+            <image href="assets/mark-bar.png?v=2" width="841" height="794" mask="url(#m-bar)" />
+            <image href="assets/mark-a.png?v=2" width="841" height="794" mask="url(#m-a)" />
+            <image href="assets/mark-b.png?v=2" width="841" height="794" mask="url(#m-b)" />
+            <image href="assets/mark-foot.png?v=2" width="841" height="794" mask="url(#m-foot)" />
+          </svg>
         </div>
         <nav class="index" aria-label="Collections">
           <button type="button" data-go="1">Expertise</button>
           <button type="button" data-go="3">Approche</button>
           <button type="button" data-go="5">Sélection</button>
-          <button type="button" data-go="9">À propos</button>
-          <button type="button" data-go="11">Nous écrire</button>
+          <button type="button" data-go="7">À propos</button>
+          <button type="button" data-go="9">Nous écrire</button>
         </nav>
       </section>
 
@@ -71,28 +94,32 @@
         <h2>Sélection</h2>
       </section>
 
-      <section class="slide proof-slide" data-theme="light" data-collection="Sélection">
-        <div class="frame glow" role="img" aria-label="Image à déposer, expérience 1"></div>
-        <div class="copy">
-          <p class="role">1</p>
-          <p class="lead">Nom à venir</p>
-          <p>Preuve à déposer</p>
-        </div>
-      </section>
-      <section class="slide proof-slide" data-theme="light" data-collection="Sélection">
-        <div class="frame glow" role="img" aria-label="Image à déposer, expérience 2"></div>
-        <div class="copy">
-          <p class="role">2</p>
-          <p class="lead">Nom à venir</p>
-          <p>Preuve à déposer</p>
-        </div>
-      </section>
-      <section class="slide proof-slide" data-theme="light" data-collection="Sélection">
-        <div class="frame glow" role="img" aria-label="Image à déposer, expérience 3"></div>
-        <div class="copy">
-          <p class="role">3</p>
-          <p class="lead">Nom à venir</p>
-          <p>Preuve à déposer</p>
+      <section class="slide deck" id="selection" data-theme="light" data-collection="Sélection">
+        <div class="deck-stack">
+          <article class="card">
+            <div class="frame glow" role="img" aria-label="Image à déposer, expérience 1"></div>
+            <div class="copy">
+              <p class="role">1</p>
+              <p class="lead">Nom à venir</p>
+              <p>Preuve à déposer</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="frame glow" role="img" aria-label="Image à déposer, expérience 2"></div>
+            <div class="copy">
+              <p class="role">2</p>
+              <p class="lead">Nom à venir</p>
+              <p>Preuve à déposer</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="frame glow" role="img" aria-label="Image à déposer, expérience 3"></div>
+            <div class="copy">
+              <p class="role">3</p>
+              <p class="lead">Nom à venir</p>
+              <p>Preuve à déposer</p>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -233,7 +260,7 @@
       <button type="button" id="next-col">Collection suivante →</button>
     </footer>
 
-    <script src="js/nav.js?v=8"></script>
+    <script src="js/nav.js?v=10"></script>
     <script src="js/form.js?v=9"></script>
   </body>
 </html>
