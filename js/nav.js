@@ -49,13 +49,28 @@ function startFilm(video) {
   const token = ++filmToken;
   video.muted = false;
   video.volume = 1;
-  try { video.currentTime = 0; } catch (error) { /* not ready */ }
   const pending = video.play();
   if (!pending) return;
   pending.then(() => {
     if (token !== filmToken) video.pause();
   }).catch(() => {
-    if (token === filmToken) filmOpen = false;
+    if (token !== filmToken) return;
+    filmOpen = false;
+    if (video.readyState < 2) return;
+    video.muted = true;
+    const again = video.play();
+    if (!again) return;
+    again.then(() => {
+      if (token !== filmToken) {
+        video.pause();
+        return;
+      }
+      filmOpen = true;
+      video.muted = false;
+      video.volume = 1;
+    }).catch(() => {
+      if (token === filmToken) filmOpen = false;
+    });
   });
 }
 
@@ -77,30 +92,13 @@ function settleFilm(slide) {
   if (filmOpen || !video.paused) stopFilm(video);
 }
 
-function primeFilm(video) {
-  const token = ++filmToken;
-  video.muted = true;
-  video.volume = 0;
-  try { video.currentTime = 0; } catch (error) { /* not ready */ }
-  const pending = video.play();
-  const cut = () => {
-    if (token !== filmToken || filmOpen) return;
-    video.pause();
-    video.muted = false;
-    video.volume = 1;
-    try { video.currentTime = 0; } catch (error) { /* not ready */ }
-  };
-  if (pending) pending.then(cut).catch(() => {});
-  else cut();
-}
-
 function go(index) {
   const slide = slides[index];
   if (!slide) return;
   const video = filmVideo();
   if (video && slide.contains(video)) {
     arriving = true;
-    if (!filmOpen) primeFilm(video);
+    startFilm(video);
   } else if (video) {
     stopFilm(video);
   }
@@ -114,6 +112,11 @@ if (filmNode) {
     filmToken += 1;
     filmOpen = true;
     filmNode.pause();
+  });
+  filmNode.addEventListener("canplay", () => {
+    const slide = slides[indexNow()];
+    if (!slide || !slide.contains(filmNode) || filmDone || filmOpen || !filmNode.paused) return;
+    startFilm(filmNode);
   });
 }
 
@@ -298,17 +301,50 @@ if (deck) {
   let touchStart = null;
   deck.addEventListener("touchstart", (event) => {
     const point = event.changedTouches[0];
-    touchStart = { x: point.clientX, y: point.clientY };
+    touchStart = { x: point.clientX, y: point.clientY, left: track.scrollLeft };
   }, { passive: true });
+  deck.addEventListener("touchmove", (event) => {
+    if (!touchStart) return;
+    const point = event.touches[0];
+    const dx = point.clientX - touchStart.x;
+    const dy = point.clientY - touchStart.y;
+    if (Math.abs(dx) < 8 || Math.abs(dx) < Math.abs(dy)) return;
+    event.preventDefault();
+    track.scrollLeft = touchStart.left;
+  }, { passive: false });
   deck.addEventListener("touchend", (event) => {
     if (!touchStart) return;
     const point = event.changedTouches[0];
     const dx = point.clientX - touchStart.x;
     const dy = point.clientY - touchStart.y;
+    const left = touchStart.left;
     touchStart = null;
-    if (Math.abs(dy) > 48 && Math.abs(dy) > Math.abs(dx)) playDeck(dy > 0 ? 1 : -1);
+    const horizontal = Math.abs(dx) > 24 && Math.abs(dx) >= Math.abs(dy);
+    const vertical = Math.abs(dy) > 24 && Math.abs(dy) > Math.abs(dx);
+    if (!horizontal && !vertical) return;
+    track.scrollLeft = left;
+    const dir = horizontal ? (dx < 0 ? 1 : -1) : (dy > 0 ? 1 : -1);
+    if (!playDeck(dir)) go(indexNow() + dir);
   }, { passive: true });
 }
+
+let pageTouch = null;
+track.addEventListener("touchstart", (event) => {
+  if (event.target.closest(".deck")) return;
+  const point = event.changedTouches[0];
+  pageTouch = { x: point.clientX, i: indexNow() };
+}, { passive: true });
+track.addEventListener("touchend", (event) => {
+  if (!pageTouch) return;
+  const dx = event.changedTouches[0].clientX - pageTouch.x;
+  const from = pageTouch.i;
+  pageTouch = null;
+  const video = filmVideo();
+  if (!video || Math.abs(dx) < 24) return;
+  const dir = dx < 0 ? 1 : -1;
+  const guess = slides[from + dir];
+  if (guess && guess.contains(video)) startFilm(video);
+}, { passive: true });
 
 prev.addEventListener("click", () => go(indexNow() - 1));
 next.addEventListener("click", () => go(indexNow() + 1));

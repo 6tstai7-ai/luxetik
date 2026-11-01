@@ -254,10 +254,13 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
 
 .glow { aspect-ratio: 4 / 3; }
 
-.photo-reel { overflow: hidden; }
+.photo-reel { position: relative; overflow: hidden; touch-action: none; }
 
 .photo-track {
+  position: absolute;
+  inset: 0;
   display: flex;
+  width: 100%;
   height: 100%;
   transition: transform 680ms var(--ease);
 }
@@ -266,7 +269,7 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   flex: 0 0 100%;
   width: 100%;
   height: 100%;
-  min-height: inherit;
+  min-height: 0;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -536,8 +539,14 @@ input, textarea {
     white-space: nowrap;
   }
   .prose, .story, .proof-slide, .card { padding: 4.8rem 1.25rem 4.6rem; }
-  .card { gap: 1rem; }
-  .card .glow { min-height: 22vh; }
+  .card {
+    gap: 0.75rem;
+    align-content: center;
+    padding: 4.2rem 1.1rem 4rem;
+  }
+  .card .glow { min-height: 0; aspect-ratio: 4 / 3; }
+  .card .copy p { margin: 0 0 0.4rem; }
+  .card .lead { font-size: 1.35rem; }
   .rail button { letter-spacing: 0.03em; white-space: nowrap; }
   #hint { display: none; }
 }
