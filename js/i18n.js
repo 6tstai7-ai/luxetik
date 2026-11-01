@@ -19,12 +19,20 @@ const copy = {
     app1: "Une bonne idée ne doit pas juste exister. On donne les outils pour la réaliser.",
     app2: "Après, tu n’as plus seulement un projet. Tu as une image claire et une présence réelle, qui t’ouvre des portes.",
     card1: "Image à déposer, expérience 1",
+    eventLead: "Organisation d'événements",
+    eventProof: "Une voix prend le geste, le rythme tient la scène, les gens se retrouvent.",
+    altSalle: "Public de dos face à la scène, lumière violette",
+    altGroupe: "Groupe sur scène : guitare, deux voix, congas et batterie",
+    altRythme: "Percussions et batterie sur scène, lumière violette",
+    altGens: "Personnes debout ensemble devant le rideau noir",
+    altVoix: "Artiste au micro, bras levé, lumière violette",
+    altDanse: "Ligne de personnes qui dansent, la scène au fond",
     card2: "Image à déposer, expérience 2",
     card3: "Image à déposer, expérience 3",
     nameSoon: "Nom à venir",
     proofSoon: "Preuve à déposer",
-    portrait: "Portrait de Carl Constant, à déposer",
-    portraitCap: "Portrait à déposer",
+    portrait: "Portrait de Carl Constant",
+    portraitCap: "Carl Constant",
     role: "Fondateur et directeur créatif",
     bio1: "Le parcours de Carl Constant ne suit pas une ligne droite.",
     bio2: "Il débute dans les Forces armées, où il développe discipline, rigueur et capacité d’adaptation. Il entre ensuite dans l’univers de l’image comme mannequin, avant de passer de l’autre côté en collaborant avec un média et en explorant la création, la culture et l’événementiel.",
@@ -117,12 +125,20 @@ const copy = {
     app1: "A good idea should not merely exist. We give you the tools to make it real.",
     app2: "After that, you no longer have only a project. You have a clear image and a real presence, one that opens doors.",
     card1: "Image to come, experience 1",
+    eventLead: "Event organizing",
+    eventProof: "A voice takes the gesture, the rhythm holds the stage, people come together.",
+    altSalle: "Audience from behind, facing the stage, purple light",
+    altGroupe: "Band on stage: guitar, two voices, congas and drums",
+    altRythme: "Percussion and drums on stage, purple light",
+    altGens: "People standing together in front of the black curtain",
+    altVoix: "Artist at the microphone, arm raised, purple light",
+    altDanse: "A line of people dancing, the stage still in the back",
     card2: "Image to come, experience 2",
     card3: "Image to come, experience 3",
     nameSoon: "Name to come",
     proofSoon: "Proof to come",
-    portrait: "Portrait of Carl Constant, to come",
-    portraitCap: "Portrait to come",
+    portrait: "Portrait of Carl Constant",
+    portraitCap: "Carl Constant",
     role: "Founder and creative director",
     bio1: "Carl Constant’s path does not follow a straight line.",
     bio2: "He starts in the Armed Forces, where he builds discipline, rigor, and adaptability. He then enters the world of image as a model, before moving to the other side, collaborating with a media outlet and exploring creation, culture, and events.",
@@ -228,6 +244,9 @@ function applyLang(next) {
   });
   document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
     el.setAttribute("aria-label", t(el.dataset.i18nAria));
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+    el.setAttribute("alt", t(el.dataset.i18nAlt));
   });
   document.querySelectorAll("[data-set-lang]").forEach((button) => {
     const on = button.dataset.setLang === next;

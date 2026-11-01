@@ -123,7 +123,9 @@ button {
   color: var(--ink);
 }
 
+.slide.cover:has(+ .film),
 .slide.deck,
+.slide.film,
 .slide:last-child {
   flex-basis: 100vw;
   width: 100vw;
@@ -242,7 +244,8 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   min-height: 16rem;
 }
 
-.frame-portrait { aspect-ratio: 3 / 4; }
+.frame-portrait { aspect-ratio: 3 / 4; overflow: hidden; }
+.frame-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
 
 .proof-slide {
   grid-template-columns: minmax(16rem, 1.1fr) minmax(14rem, 0.8fr);
@@ -250,6 +253,73 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
 }
 
 .glow { aspect-ratio: 4 / 3; }
+
+.photo-reel { overflow: hidden; }
+
+.photo-track {
+  display: flex;
+  height: 100%;
+  transition: transform 680ms var(--ease);
+}
+
+.photo-track img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.photo-track img.is-full {
+  object-fit: contain;
+  background: #100818;
+}
+
+.photo-count {
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.film {
+  display: grid;
+  place-items: center;
+  padding: 4.6rem 4vw 4.4rem;
+}
+
+.film-frame {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  width: min(100%, calc((100dvh - 10.6rem) * 4 / 3));
+}
+
+.film:not(.is-current) .film-frame {
+  visibility: hidden;
+}
+
+.film-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  background: #000;
+  object-fit: contain;
+}
+
+.film-frame figcaption {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: oklch(0.78 0 0);
+}
 
 .deck { position: relative; }
 .deck-stack { position: relative; height: 100%; }
@@ -265,7 +335,9 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   background: var(--bg);
 }
 
+.card { z-index: 1; }
 .card:first-child { z-index: 2; }
+.deck-stack .card:last-child { z-index: 0; }
 
 .card .glow { width: 100%; min-height: 52vh; }
 
@@ -472,7 +544,7 @@ input, textarea {
 
 @media (prefers-reduced-motion: reduce) {
   .track { scroll-behavior: auto; }
-  .btn, .meter span, .card.is-leaving, .card.is-entering.is-rising { transition: none; }
+  .btn, .meter span, .card.is-leaving, .card.is-entering.is-rising, .photo-track { transition: none; }
   .btn:active { transform: none; }
   html.js .slide:not(.is-current) :is(h1, h2, .copy > *, .index button),
   html.js .is-current :is(h1, h2, .copy > *, .index button) {

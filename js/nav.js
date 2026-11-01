@@ -25,26 +25,147 @@ function indexNow() {
   return i;
 }
 
+function filmVideo() {
+  return document.querySelector(".film video");
+}
+
+let filmToken = 0;
+let filmOpen = false;
+let filmDone = false;
+let arriving = false;
+
+function stopFilm(video) {
+  arriving = false;
+  filmOpen = false;
+  filmDone = false;
+  filmToken += 1;
+  video.pause();
+  try { video.currentTime = 0; } catch (error) { /* not ready */ }
+}
+
+function startFilm(video) {
+  if (!video || reduced() || filmOpen || filmDone) return;
+  filmOpen = true;
+  const token = ++filmToken;
+  video.muted = false;
+  video.volume = 1;
+  try { video.currentTime = 0; } catch (error) { /* not ready */ }
+  const pending = video.play();
+  if (!pending) return;
+  pending.then(() => {
+    if (token !== filmToken) video.pause();
+  }).catch(() => {
+    if (token === filmToken) filmOpen = false;
+  });
+}
+
+function settleFilm(slide) {
+  const video = filmVideo();
+  if (!video) return;
+  const here = Boolean(slide && slide.contains(video));
+  if (here) {
+    arriving = false;
+    if (filmDone || video.ended) {
+      filmDone = true;
+      video.pause();
+      return;
+    }
+    startFilm(video);
+    return;
+  }
+  if (arriving) return;
+  if (filmOpen || !video.paused) stopFilm(video);
+}
+
+function primeFilm(video) {
+  const token = ++filmToken;
+  video.muted = true;
+  video.volume = 0;
+  try { video.currentTime = 0; } catch (error) { /* not ready */ }
+  const pending = video.play();
+  const cut = () => {
+    if (token !== filmToken || filmOpen) return;
+    video.pause();
+    video.muted = false;
+    video.volume = 1;
+    try { video.currentTime = 0; } catch (error) { /* not ready */ }
+  };
+  if (pending) pending.then(cut).catch(() => {});
+  else cut();
+}
+
 function go(index) {
   const slide = slides[index];
   if (!slide) return;
+  const video = filmVideo();
+  if (video && slide.contains(video)) {
+    arriving = true;
+    if (!filmOpen) primeFilm(video);
+  } else if (video) {
+    stopFilm(video);
+  }
   slide.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", inline: "start", block: "nearest" });
 }
 
-function resetDeck() {
-  if (!deck || shown === 0) return;
-  deckOrder.forEach((card) => deck.appendChild(card));
-  deck.querySelectorAll(".card").forEach((card) => {
-    card.classList.remove("is-leaving", "is-entering", "is-rising");
+const filmNode = filmVideo();
+if (filmNode) {
+  filmNode.addEventListener("ended", () => {
+    filmDone = true;
+    filmToken += 1;
+    filmOpen = true;
+    filmNode.pause();
   });
-  shown = 0;
-  deckBusy = false;
+}
+
+function resetDeck() {
+  if (!deck) return;
+  if (shown !== 0) {
+    deckOrder.forEach((card) => deck.appendChild(card));
+    deck.querySelectorAll(".card").forEach((card) => {
+      card.classList.remove("is-leaving", "is-entering", "is-rising");
+    });
+    shown = 0;
+    deckBusy = false;
+  }
+  deck.querySelectorAll(".card").forEach((card) => setPhoto(card, 0));
+}
+
+function photoReel(card) {
+  return card.querySelector(".photo-track");
+}
+
+function setPhoto(card, index) {
+  const reel = photoReel(card);
+  if (!reel) return;
+  const count = reel.children.length;
+  const next = Math.max(0, Math.min(count - 1, index));
+  card.dataset.photo = String(next);
+  reel.style.transform = `translateX(${next * -100}%)`;
+  const countEl = card.querySelector(".photo-count");
+  if (countEl) countEl.textContent = `${next + 1} / ${count}`;
+}
+
+function shiftPhotos(card, dir) {
+  const reel = photoReel(card);
+  if (!reel || reel.children.length < 2) return false;
+  const index = Number(card.dataset.photo || 0);
+  const last = reel.children.length - 1;
+  if (dir > 0 && index < last) {
+    setPhoto(card, index + 1);
+    return true;
+  }
+  if (dir < 0 && index > 0) {
+    setPhoto(card, index - 1);
+    return true;
+  }
+  return false;
 }
 
 function playDeck(dir) {
   if (!deck || deckBusy) return true;
   const top = deck.firstElementChild;
   if (!top) return false;
+  if (shiftPhotos(top, dir)) return true;
   if (dir > 0 && shown >= deckOrder.length - 1) return false;
   if (dir < 0 && shown <= 0) return false;
   deckBusy = true;
@@ -98,6 +219,7 @@ function sync() {
   const slide = slides[i];
   slides.forEach((item, n) => item.classList.toggle("is-current", n === i));
   if (!slide.classList.contains("deck")) resetDeck();
+  settleFilm(slide);
   document.body.classList.toggle("on-dark", slide.dataset.theme === "dark");
   const name = document.documentElement.lang === "en"
     ? slide.dataset.collectionEn || slide.dataset.collection
@@ -144,7 +266,7 @@ track.addEventListener(
 let drag = null;
 track.addEventListener("pointerdown", (event) => {
   if (event.button !== 0 || event.pointerType === "touch") return;
-  if (event.target.closest("a, button, input, textarea, label, select")) return;
+  if (event.target.closest("a, button, input, textarea, label, select, video")) return;
   drag = { x: event.clientX, y: event.clientY, left: track.scrollLeft, id: event.pointerId, deck: Boolean(event.target.closest(".deck")) };
   track.classList.add("is-dragging");
   track.setPointerCapture(event.pointerId);
@@ -201,4 +323,5 @@ document.querySelectorAll("[data-go]").forEach((node) => {
 });
 
 document.addEventListener("luxetik:lang", sync);
+if (deck) deck.querySelectorAll(".card").forEach((card) => setPhoto(card, 0));
 sync();

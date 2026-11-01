@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/site.css?v=14" />
+    <link rel="stylesheet" href="css/site.css?v=20" />
   </head>
   <body>
     <a class="skip" href="#track" data-i18n="skip">Aller au contenu</a>
@@ -64,12 +64,30 @@
           </svg>
         </div>
         <nav class="index" data-i18n-aria="sections" aria-label="Collections">
-          <button type="button" data-go="1" data-i18n="navExpertise">Expertise</button>
-          <button type="button" data-go="3" data-i18n="navApproach">Approche</button>
-          <button type="button" data-go="5" data-i18n="navSelection">Sélection</button>
-          <button type="button" data-go="7" data-i18n="navAbout">À propos</button>
+          <button type="button" data-go="1" data-i18n="navAbout">À propos</button>
+          <button type="button" data-go="2" data-i18n="navExpertise">Expertise</button>
+          <button type="button" data-go="4" data-i18n="navApproach">Approche</button>
+          <button type="button" data-go="6" data-i18n="navSelection">Sélection</button>
           <button type="button" data-go="9" data-i18n="navWrite">Nous écrire</button>
         </nav>
+      </section>
+
+      <section class="slide story slide-scroll" data-theme="light" data-collection="À propos" data-collection-en="About">
+        <figure class="portrait">
+          <div class="frame frame-portrait">
+            <img src="assets/portrait-carl.webp" width="682" height="1024" alt="Portrait de Carl Constant" data-i18n-alt="portrait" />
+          </div>
+          <figcaption data-i18n="portraitCap">Carl Constant</figcaption>
+        </figure>
+        <div class="copy">
+          <p class="role" data-i18n="role">Fondateur et directeur créatif</p>
+          <p data-i18n="bio1">Le parcours de Carl Constant ne suit pas une ligne droite.</p>
+          <p data-i18n="bio2">Il débute dans les Forces armées, où il développe discipline, rigueur et capacité d’adaptation. Il entre ensuite dans l’univers de l’image comme mannequin, avant de passer de l’autre côté en collaborant avec un média et en explorant la création, la culture et l’événementiel.</p>
+          <p data-i18n="bio3">Son parcours l’amène également vers le corps et la performance : plusieurs années comme entraîneur privé, puis une formation en massothérapie et en kinésithérapie.</p>
+          <p data-i18n="bio4">Des expériences très différentes qui ont façonné une même manière de voir : observer, comprendre, connecter et créer.</p>
+          <p data-i18n="bio5">Aujourd’hui, avec Luxétik, Carl rassemble ces différents univers pour accompagner artistes, entrepreneurs et organisations dans leur image, leur histoire et les expériences qu’ils souhaitent créer.</p>
+          <p class="aside" data-i18n="bio6">Un parcours multidisciplinaire. Un regard singulier. Une vision mise en mouvement.</p>
+        </div>
       </section>
 
       <section class="slide cover" data-theme="dark" data-collection="Expertise" data-collection-en="Expertise">
@@ -100,14 +118,37 @@
         <h2 data-i18n="navSelection">Sélection</h2>
       </section>
 
+      <section class="slide film" id="film" data-theme="dark" data-collection="Sélection" data-collection-en="Selection">
+        <figure class="film-frame">
+          <video
+            playsinline
+            preload="metadata"
+            poster="assets/saint-michel.webp"
+            width="1440"
+            height="1080"
+            aria-label="Festival Jeunesse, Saint-Michel"
+          >
+            <source src="assets/saint-michel.mp4" type="video/mp4" />
+          </video>
+          <figcaption>Festival Jeunesse, Saint-Michel</figcaption>
+        </figure>
+      </section>
+
       <section class="slide deck" id="selection" data-theme="light" data-collection="Sélection" data-collection-en="Selection">
         <div class="deck-stack">
           <article class="card">
-            <div class="frame glow" role="img" data-i18n-aria="card1" aria-label="Image à déposer, expérience 1"></div>
+            <div class="frame glow photo-reel">
+              <div class="photo-track">
+                <img src="assets/event-voix.webp" width="1024" height="683" alt="Artiste au micro, bras levé, lumière violette" data-i18n-alt="altVoix" />
+                <img src="assets/event-rythme.webp" width="867" height="1024" alt="Percussions et batterie sur scène, lumière violette" data-i18n-alt="altRythme" />
+                <img class="is-full" src="assets/event-gens.webp" width="1024" height="831" alt="Personnes debout ensemble devant le rideau noir" data-i18n-alt="altGens" />
+              </div>
+            </div>
             <div class="copy">
               <p class="role">1</p>
-              <p class="lead" data-i18n="nameSoon">Nom à venir</p>
-              <p data-i18n="proofSoon">Preuve à déposer</p>
+              <p class="lead" data-i18n="eventLead">Organisation d'événements</p>
+              <p data-i18n="eventProof">Une voix prend le geste, le rythme tient la scène, les gens se retrouvent.</p>
+              <p class="photo-count">1 / 3</p>
             </div>
           </article>
           <article class="card">
@@ -126,26 +167,6 @@
               <p data-i18n="proofSoon">Preuve à déposer</p>
             </div>
           </article>
-        </div>
-      </section>
-
-      <section class="slide cover" data-theme="dark" data-collection="À propos" data-collection-en="About">
-        <h2 data-i18n="navAbout">À propos</h2>
-      </section>
-
-      <section class="slide story slide-scroll" data-theme="light" data-collection="À propos" data-collection-en="About">
-        <figure class="portrait">
-          <div class="frame frame-portrait" role="img" data-i18n-aria="portrait" aria-label="Portrait de Carl Constant, à déposer"></div>
-          <figcaption data-i18n="portraitCap">Portrait à déposer</figcaption>
-        </figure>
-        <div class="copy">
-          <p class="role" data-i18n="role">Fondateur et directeur créatif</p>
-          <p data-i18n="bio1">Le parcours de Carl Constant ne suit pas une ligne droite.</p>
-          <p data-i18n="bio2">Il débute dans les Forces armées, où il développe discipline, rigueur et capacité d’adaptation. Il entre ensuite dans l’univers de l’image comme mannequin, avant de passer de l’autre côté en collaborant avec un média et en explorant la création, la culture et l’événementiel.</p>
-          <p data-i18n="bio3">Son parcours l’amène également vers le corps et la performance : plusieurs années comme entraîneur privé, puis une formation en massothérapie et en kinésithérapie.</p>
-          <p data-i18n="bio4">Des expériences très différentes qui ont façonné une même manière de voir : observer, comprendre, connecter et créer.</p>
-          <p data-i18n="bio5">Aujourd’hui, avec Luxétik, Carl rassemble ces différents univers pour accompagner artistes, entrepreneurs et organisations dans leur image, leur histoire et les expériences qu’ils souhaitent créer.</p>
-          <p class="aside" data-i18n="bio6">Un parcours multidisciplinaire. Un regard singulier. Une vision mise en mouvement.</p>
         </div>
       </section>
 
@@ -266,8 +287,8 @@
       <button type="button" id="next-col"><span class="rail-word" data-i18n="next">Collection suivante</span> →</button>
     </footer>
 
-    <script src="js/i18n.js?v=1"></script>
-    <script src="js/nav.js?v=12"></script>
+    <script src="js/i18n.js?v=5"></script>
+    <script src="js/nav.js?v=19"></script>
     <script src="js/form.js?v=13"></script>
   </body>
 </html>
