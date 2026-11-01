@@ -280,6 +280,21 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   background: #100818;
 }
 
+.photo-track img.is-plain {
+  object-fit: contain;
+  object-position: center;
+  background: oklch(0.94 0 0);
+}
+
+.photo-track img.is-mark {
+  object-fit: contain;
+  object-position: center;
+  background: #000;
+}
+
+.photo-track img.is-chest { object-position: center 10%; }
+.copy p:empty { display: none; }
+
 .photo-count {
   margin: 0.35rem 0 0;
   font-size: 0.72rem;
@@ -528,7 +543,7 @@ input, textarea {
   .slide,
   .slide.deck,
   .slide:last-child { flex-basis: 100vw; width: 100vw; }
-  .home, .story, .proof-slide, .card { grid-template-columns: 1fr; }
+  .home, .proof-slide, .card { grid-template-columns: 1fr; }
   .home { align-content: center; }
   .home-mark { display: grid; padding: 4.2rem 1.4rem 0.2rem; }
   .home-mark .mark { width: min(42vw, 8.5rem); }
@@ -539,6 +554,16 @@ input, textarea {
     white-space: nowrap;
   }
   .prose, .story, .proof-slide, .card { padding: 4.8rem 1.25rem 4.6rem; }
+  .story {
+    grid-template-columns: minmax(7.2rem, 0.82fr) minmax(0, 1.2fr);
+    gap: 0.7rem;
+    align-items: start;
+    padding: 4.2rem 0.85rem 3.6rem;
+  }
+  .story .frame { min-height: 0; }
+  .story .copy { max-width: none; }
+  .story .copy p { margin: 0 0 0.45rem; font-size: 0.72rem; line-height: 1.35; }
+  .story .role, .story figcaption { font-size: 0.68rem; }
   .card {
     gap: 0.75rem;
     align-content: center;

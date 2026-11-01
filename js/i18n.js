@@ -20,7 +20,7 @@ const copy = {
     app2: "Après, tu n’as plus seulement un projet. Tu as une image claire et une présence réelle, qui t’ouvre des portes.",
     card1: "Image à déposer, expérience 1",
     eventLead: "Organisation d'événements",
-    eventProof: "Une voix prend le geste, le rythme tient la scène, les gens se retrouvent.",
+    eventProof: "",
     altSalle: "Public de dos face à la scène, lumière violette",
     altGroupe: "Groupe sur scène : guitare, deux voix, congas et batterie",
     altRythme: "Percussions et batterie sur scène, lumière violette",
@@ -28,7 +28,17 @@ const copy = {
     altVoix: "Artiste au micro, bras levé, lumière violette",
     altDanse: "Ligne de personnes qui dansent, la scène au fond",
     card2: "Image à déposer, expérience 2",
+    massageLead: "Massothérapie",
+    massageProof: "",
+    altPoignet: "Massage du poignet, drap blanc",
+    altDos: "Massage du dos, mains posées sur les épaules",
     card3: "Image à déposer, expérience 3",
+    brandLead: "Image de marque",
+    brandProof: "",
+    altSigne: "Logo Cowbell & Groove sur fond noir",
+    altBanc: "Deux personnes sur un banc, sweat et t-shirt Cowbell & Groove",
+    altBaguettes: "Sweat Cowbell & Groove, baguettes de batterie",
+    altJour: "Personne debout en t-shirt Cowbell & Groove",
     nameSoon: "Nom à venir",
     proofSoon: "Preuve à déposer",
     portrait: "Portrait de Carl Constant",
@@ -126,7 +136,7 @@ const copy = {
     app2: "After that, you no longer have only a project. You have a clear image and a real presence, one that opens doors.",
     card1: "Image to come, experience 1",
     eventLead: "Event organizing",
-    eventProof: "A voice takes the gesture, the rhythm holds the stage, people come together.",
+    eventProof: "",
     altSalle: "Audience from behind, facing the stage, purple light",
     altGroupe: "Band on stage: guitar, two voices, congas and drums",
     altRythme: "Percussion and drums on stage, purple light",
@@ -134,7 +144,17 @@ const copy = {
     altVoix: "Artist at the microphone, arm raised, purple light",
     altDanse: "A line of people dancing, the stage still in the back",
     card2: "Image to come, experience 2",
+    massageLead: "Massage therapy",
+    massageProof: "",
+    altPoignet: "Wrist massage, white sheet",
+    altDos: "Back massage, hands placed on the shoulders",
     card3: "Image to come, experience 3",
+    brandLead: "Brand image",
+    brandProof: "",
+    altSigne: "Cowbell & Groove logo on a black background",
+    altBanc: "Two people on a bench, Cowbell & Groove hoodie and t-shirt",
+    altBaguettes: "Cowbell & Groove hoodie, drumsticks",
+    altJour: "Person standing in a Cowbell & Groove t-shirt",
     nameSoon: "Name to come",
     proofSoon: "Proof to come",
     portrait: "Portrait of Carl Constant",
@@ -227,7 +247,9 @@ function chosenLang() {
 
 function t(key) {
   const lang = document.documentElement.lang === "en" ? "en" : "fr";
-  return copy[lang][key] || copy.fr[key] || key;
+  if (copy[lang][key] !== undefined) return copy[lang][key];
+  if (copy.fr[key] !== undefined) return copy.fr[key];
+  return key;
 }
 
 function applyLang(next) {
