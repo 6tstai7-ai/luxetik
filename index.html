@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/site.css?v=25" />
+    <link rel="stylesheet" href="css/site.css?v=31" />
   </head>
   <body>
     <a class="skip" href="#track" data-i18n="skip">Aller au contenu</a>
@@ -28,6 +28,8 @@
           <span aria-hidden="true">|</span>
           <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
         </span>
+        <span aria-hidden="true">|</span>
+        <a href="/journal" data-i18n="navJournal">Journal</a>
         <span aria-hidden="true">|</span>
         <a href="#ecrire" data-go="9" data-i18n="contact">Contact</a>
         <span aria-hidden="true">|</span>
@@ -65,10 +67,11 @@
         </div>
         <nav class="index" data-i18n-aria="sections" aria-label="Collections">
           <button type="button" data-go="1" data-i18n="navAbout">À propos</button>
-          <button type="button" data-go="2" data-i18n="navExpertise">Expertise</button>
+          <button type="button" data-go="2" data-i18n="navExpertise">Services</button>
           <button type="button" data-go="4" data-i18n="navApproach">Approche</button>
-          <button type="button" data-go="6" data-i18n="navSelection">Sélection</button>
+          <button type="button" data-go="6" data-i18n="navSelection">Portfolio</button>
           <button type="button" data-go="9" data-i18n="navWrite">Nous écrire</button>
+          <a href="/journal" data-i18n="navJournal">Journal</a>
         </nav>
       </section>
 
@@ -90,11 +93,11 @@
         </div>
       </section>
 
-      <section class="slide cover" data-theme="dark" data-collection="Expertise" data-collection-en="Expertise">
-        <h1 data-i18n="navExpertise">Expertise</h1>
+      <section class="slide cover" data-theme="dark" data-collection="Services" data-collection-en="Services">
+        <h1 data-i18n="navExpertise">Services</h1>
       </section>
 
-      <section class="slide prose" data-theme="light" data-collection="Expertise" data-collection-en="Expertise">
+      <section class="slide prose" data-theme="light" data-collection="Services" data-collection-en="Services">
         <div class="copy">
           <p class="lead" data-i18n="exp1">Luxétik transforme les histoires, les projets et les événements en expériences visuelles fortes.</p>
           <p data-i18n="exp2">Elles captent l’attention, créent de la visibilité et connectent les bonnes personnes.</p>
@@ -114,11 +117,11 @@
         </div>
       </section>
 
-      <section class="slide cover" data-theme="dark" data-collection="Sélection" data-collection-en="Selection">
-        <h2 data-i18n="navSelection">Sélection</h2>
+      <section class="slide cover" data-theme="dark" data-collection="Portfolio" data-collection-en="Portfolio">
+        <h2 data-i18n="navSelection">Portfolio</h2>
       </section>
 
-      <section class="slide film" id="film" data-theme="dark" data-collection="Sélection" data-collection-en="Selection">
+      <section class="slide film" id="film" data-theme="dark" data-collection="Portfolio" data-collection-en="Portfolio">
         <figure class="film-frame">
           <video
             playsinline
@@ -134,7 +137,7 @@
         </figure>
       </section>
 
-      <section class="slide deck" id="selection" data-theme="light" data-collection="Sélection" data-collection-en="Selection">
+      <section class="slide deck" id="selection" data-theme="light" data-collection="Portfolio" data-collection-en="Portfolio">
         <div class="deck-stack">
           <article class="card">
             <div class="frame glow photo-reel">
@@ -171,7 +174,7 @@
                 <img class="is-mark" src="assets/brand-signe.webp" width="1024" height="1024" alt="Logo Cowbell &amp; Groove sur fond noir" data-i18n-alt="altSigne" />
                 <img src="assets/brand-banc.webp" width="1024" height="818" alt="Deux personnes sur un banc, sweat et t-shirt Cowbell &amp; Groove" data-i18n-alt="altBanc" />
                 <img class="is-chest" src="assets/brand-baguettes.webp" width="819" height="1024" alt="Sweat Cowbell &amp; Groove, baguettes de batterie" data-i18n-alt="altBaguettes" />
-                <img src="assets/brand-jour.webp" width="819" height="1024" alt="Personne debout en t-shirt Cowbell &amp; Groove" data-i18n-alt="altJour" />
+                <img class="is-head" src="assets/brand-jour.webp" width="819" height="1024" alt="Personne debout en t-shirt Cowbell &amp; Groove" data-i18n-alt="altJour" title="Glisse pour cadrer" />
               </div>
             </div>
             <div class="copy">
@@ -187,7 +190,7 @@
       <section class="slide demande slide-scroll" id="ecrire" data-theme="dark" data-collection="Nous écrire" data-collection-en="Write to us">
         <div class="demande-inner">
           <h2 id="demande-title" data-i18n="askTitle">Dis à Carl où tu en es.</h2>
-          <p class="demande-lead" data-i18n="askLead">Il lit chaque demande. L’appel, 30 à 40 minutes, part seulement si le projet avance.</p>
+          <p class="demande-lead" data-i18n="askLead">Indiquez votre nom, votre projet et un lien (site ou Instagram). Choisissez le type de projet, le but, l’aide voulue, le budget et qui décide. Décrivez où vous en êtes, la réussite visée, pourquoi maintenant, l’échéance, et pourquoi Luxétik.</p>
           <form id="qualification" novalidate>
             <p class="progress" id="progress" aria-live="polite">1 / 12</p>
             <div class="meter" aria-hidden="true"><span id="meter-bar"></span></div>
@@ -301,8 +304,8 @@
       <button type="button" id="next-col"><span class="rail-word" data-i18n="next">Collection suivante</span> →</button>
     </footer>
 
-    <script src="js/i18n.js?v=8"></script>
-    <script src="js/nav.js?v=20"></script>
+    <script src="js/i18n.js?v=11"></script>
+    <script src="js/nav.js?v=22"></script>
     <script src="js/form.js?v=13"></script>
   </body>
 </html>

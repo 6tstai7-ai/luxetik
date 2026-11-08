@@ -172,8 +172,11 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   padding: 5.5rem 0 4.5rem 1.5rem;
 }
 
-.index button {
+.index :is(button, a) {
+  display: block;
+  width: 100%;
   text-align: left;
+  text-decoration: none;
   border-top: 1px solid oklch(0.12 0 0 / 0.35);
   padding: 0.85rem 0;
   font-size: clamp(1.15rem, 2vw, 1.7rem);
@@ -183,7 +186,7 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   white-space: nowrap;
 }
 
-.index button:last-child { border-bottom: 1px solid oklch(0.12 0 0 / 0.35); }
+.index :is(button, a):last-child { border-bottom: 1px solid oklch(0.12 0 0 / 0.35); }
 
 .cover {
   display: flex;
@@ -293,6 +296,8 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
 }
 
 .photo-track img.is-chest { object-position: center 10%; }
+.photo-track img.is-head { object-position: 49% 2%; cursor: grab; touch-action: none; }
+.photo-track img.is-head:active { cursor: grabbing; }
 .copy p:empty { display: none; }
 
 .photo-count {
@@ -381,18 +386,19 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   to { opacity: 1; transform: none; }
 }
 
-html.js .slide:not(.is-current) :is(h1, h2, .copy > *, .index button) {
+html.js .slide:not(.is-current) :is(h1, h2, .copy > *, .index :is(button, a)) {
   opacity: 0;
 }
 
-html.js .is-current :is(h1, h2, .copy > *, .index button) {
+html.js .is-current :is(h1, h2, .copy > *, .index :is(button, a)) {
   animation: slide-fade 0.72s var(--ease) both;
 }
 
-html.js .is-current :is(.copy > *:nth-child(2), .index button:nth-child(2)) { animation-delay: 70ms; }
-html.js .is-current :is(.copy > *:nth-child(3), .index button:nth-child(3)) { animation-delay: 140ms; }
-html.js .is-current :is(.copy > *:nth-child(4), .index button:nth-child(4)) { animation-delay: 210ms; }
-html.js .is-current .index button:nth-child(5) { animation-delay: 280ms; }
+html.js .is-current :is(.copy > *:nth-child(2), .index :is(button, a):nth-child(2)) { animation-delay: 70ms; }
+html.js .is-current :is(.copy > *:nth-child(3), .index :is(button, a):nth-child(3)) { animation-delay: 140ms; }
+html.js .is-current :is(.copy > *:nth-child(4), .index :is(button, a):nth-child(4)) { animation-delay: 210ms; }
+html.js .is-current .index :is(button, a):nth-child(5) { animation-delay: 280ms; }
+html.js .is-current .index :is(button, a):nth-child(6) { animation-delay: 350ms; }
 
 html.js .deck.is-current .card:not(:first-child) .copy > * {
   animation: none;
@@ -548,6 +554,7 @@ input, textarea {
   .home-mark { display: grid; padding: 4.2rem 1.4rem 0.2rem; }
   .home-mark .mark { width: min(42vw, 8.5rem); }
   .index { padding: 0.2rem 1.4rem 4.8rem; }
+  .index :is(button, a) { padding: 0.58rem 0; font-size: 1.02rem; }
   .cover { padding: 0 1.25rem; }
   .cover h1, .cover h2 {
     font-size: clamp(2.3rem, 12vw, 3.8rem);
@@ -580,8 +587,8 @@ input, textarea {
   .track { scroll-behavior: auto; }
   .btn, .meter span, .card.is-leaving, .card.is-entering.is-rising, .photo-track { transition: none; }
   .btn:active { transform: none; }
-  html.js .slide:not(.is-current) :is(h1, h2, .copy > *, .index button),
-  html.js .is-current :is(h1, h2, .copy > *, .index button) {
+  html.js .slide:not(.is-current) :is(h1, h2, .copy > *, .index :is(button, a)),
+  html.js .is-current :is(h1, h2, .copy > *, .index :is(button, a)) {
     animation: none;
     opacity: 1;
     transform: none;

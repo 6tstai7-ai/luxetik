@@ -269,7 +269,7 @@ track.addEventListener(
 let drag = null;
 track.addEventListener("pointerdown", (event) => {
   if (event.button !== 0 || event.pointerType === "touch") return;
-  if (event.target.closest("a, button, input, textarea, label, select, video")) return;
+  if (event.target.closest(".is-head, a, button, input, textarea, label, select, video")) return;
   drag = { x: event.clientX, y: event.clientY, left: track.scrollLeft, id: event.pointerId, deck: Boolean(event.target.closest(".deck")) };
   track.classList.add("is-dragging");
   track.setPointerCapture(event.pointerId);
@@ -300,6 +300,10 @@ track.addEventListener("pointercancel", endDrag);
 if (deck) {
   let touchStart = null;
   deck.addEventListener("touchstart", (event) => {
+    if (event.target.closest(".is-head")) {
+      touchStart = null;
+      return;
+    }
     const point = event.changedTouches[0];
     touchStart = { x: point.clientX, y: point.clientY, left: track.scrollLeft };
   }, { passive: true });
@@ -361,3 +365,51 @@ document.querySelectorAll("[data-go]").forEach((node) => {
 document.addEventListener("luxetik:lang", sync);
 if (deck) deck.querySelectorAll(".card").forEach((card) => setPhoto(card, 0));
 sync();
+if (location.hash === "#ecrire") go(9);
+
+const head = document.querySelector(".is-head");
+if (head) {
+  let crop = null;
+
+  function cropPos() {
+    const parts = getComputedStyle(head).objectPosition.split(/\s+/);
+    const x = parseFloat(parts[0]);
+    const y = parseFloat(parts[1]);
+    return {
+      x: Number.isFinite(x) ? x : 50,
+      y: Number.isFinite(y) ? y : 0,
+    };
+  }
+
+  head.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    event.stopPropagation();
+    const pos = cropPos();
+    crop = { id: event.pointerId, x: event.clientX, y: event.clientY, ox: pos.x, oy: pos.y };
+    try { head.setPointerCapture(event.pointerId); } catch (error) { /* synthetic */ }
+  });
+
+  head.addEventListener("pointermove", (event) => {
+    if (!crop || event.pointerId !== crop.id) return;
+    const reel = head.closest(".photo-reel");
+    const width = reel ? reel.clientWidth : 1;
+    const height = reel ? reel.clientHeight : 1;
+    const x = Math.min(100, Math.max(0, crop.ox - ((event.clientX - crop.x) / width) * 100));
+    const y = Math.min(100, Math.max(0, crop.oy - ((event.clientY - crop.y) / height) * 100));
+    head.style.objectPosition = `${Math.round(x)}% ${Math.round(y)}%`;
+  });
+
+  function endCrop(event) {
+    if (!crop || (event && event.pointerId !== crop.id)) return;
+    crop = null;
+    const pos = cropPos();
+    fetch("/api/crop", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ x: Math.round(pos.x), y: Math.round(pos.y) }),
+    }).catch(() => {});
+  }
+
+  head.addEventListener("pointerup", endCrop);
+  head.addEventListener("pointercancel", endCrop);
+}
