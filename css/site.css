@@ -314,6 +314,7 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   display: grid;
   place-items: center;
   padding: 4.6rem 4vw 4.4rem;
+  container-type: size;
 }
 
 .film-frame {
@@ -321,7 +322,8 @@ html.js .home.is-current .mark .d4 { animation: draw 0.42s var(--ease) 1.72s for
   display: grid;
   justify-items: center;
   gap: 0.8rem;
-  width: min(100%, calc((100dvh - 10.6rem) * 4 / 3));
+  width: min(100cqi, calc((100cqb - 1.6rem) * 4 / 3));
+  max-width: 100%;
 }
 
 .film:not(.is-current) .film-frame {

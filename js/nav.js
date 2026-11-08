@@ -45,18 +45,19 @@ function stopFilm(video) {
 
 function startFilm(video) {
   if (!video || reduced() || filmOpen || filmDone) return;
-  filmOpen = true;
   const token = ++filmToken;
+  const slide = video.closest(".film");
+  if (slide) slide.classList.add("is-current");
   video.muted = false;
   video.volume = 1;
   const pending = video.play();
   if (!pending) return;
+  filmOpen = true;
   pending.then(() => {
     if (token !== filmToken) video.pause();
   }).catch(() => {
     if (token !== filmToken) return;
     filmOpen = false;
-    if (video.readyState < 2) return;
     video.muted = true;
     const again = video.play();
     if (!again) return;
@@ -66,8 +67,6 @@ function startFilm(video) {
         return;
       }
       filmOpen = true;
-      video.muted = false;
-      video.volume = 1;
     }).catch(() => {
       if (token === filmToken) filmOpen = false;
     });
@@ -113,11 +112,13 @@ if (filmNode) {
     filmOpen = true;
     filmNode.pause();
   });
-  filmNode.addEventListener("canplay", () => {
+  const openWhenReady = () => {
     const slide = slides[indexNow()];
     if (!slide || !slide.contains(filmNode) || filmDone || filmOpen || !filmNode.paused) return;
     startFilm(filmNode);
-  });
+  };
+  filmNode.addEventListener("canplay", openWhenReady);
+  filmNode.addEventListener("loadeddata", openWhenReady);
 }
 
 function resetDeck() {
