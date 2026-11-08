@@ -12,7 +12,7 @@
 
 [hidden] { display: none !important; }
 
-html, body { margin: 0; height: 100%; }
+html, body { margin: 0; height: 100%; width: 100%; }
 
 body {
   background: var(--bg);
@@ -102,7 +102,8 @@ button {
 .track {
   position: relative;
   display: flex;
-  height: 100dvh;
+  width: 100%;
+  height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
@@ -113,9 +114,10 @@ button {
 .track.is-dragging { scroll-snap-type: none; cursor: grabbing; }
 
 .slide {
-  flex: 0 0 90vw;
-  width: 90vw;
-  height: 100dvh;
+  flex: 0 0 90%;
+  width: 90%;
+  min-width: 0;
+  height: 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
@@ -127,8 +129,8 @@ button {
 .slide.deck,
 .slide.film,
 .slide:last-child {
-  flex-basis: 100vw;
-  width: 100vw;
+  flex-basis: 100%;
+  width: 100%;
 }
 
 .slide[data-theme="dark"] {
@@ -548,7 +550,9 @@ input, textarea {
   .rail-word { display: none; }
   .slide,
   .slide.deck,
-  .slide:last-child { flex-basis: 100vw; width: 100vw; }
+  .slide:last-child { flex-basis: 100%; width: 100%; }
+  .top { gap: 0.45rem; }
+  .top-links { flex-wrap: wrap; justify-content: flex-end; font-size: 0.82rem; }
   .home, .proof-slide, .card { grid-template-columns: 1fr; }
   .home { align-content: center; }
   .home-mark { display: grid; padding: 4.2rem 1.4rem 0.2rem; }
